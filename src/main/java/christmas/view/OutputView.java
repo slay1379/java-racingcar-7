@@ -75,5 +75,10 @@ public class OutputView {
         System.out.println(TOTAL_PRICE_AFTER_DISCOUNT);
         System.out.println(totalPriceAfterDiscount + "원");
     }
+
+    public void printEventBadge(String badge) {
+        System.out.println(EVENT_BADGE);
+        System.out.println(badge);
+    }
 }
 
