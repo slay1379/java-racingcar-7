@@ -30,5 +30,12 @@ public class OutputView {
         System.out.println(totalPriceBeforeDiscount+"원");
     }
 
-
+    public void printGiftMenu(boolean isGift) {
+        System.out.println(GIFT_MENU);
+        if (isGift) {
+            System.out.println("샴페인 1개");
+            return;
+        }
+        System.out.println("없음");
+    }
 }
