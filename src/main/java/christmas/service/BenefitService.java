@@ -25,6 +25,17 @@ public class BenefitService {
         this.menus = menus;
     }
 
+    public void calculateTotalDiscount(int totalPrice) {
+        calculateDDayDiscount();
+        calculateWeekdaysDiscount();
+        calculateWeekendDiscount();
+        calculateSpecialDiscount();
+        calculateGiftDiscount(totalPrice);
+        benefits.totalAmount +=
+                benefits.dDayDiscount + benefits.weekendDiscount + benefits.weekdaysDiscount + benefits.specialDiscount
+                        + benefits.giftDiscount;
+    }
+
     public void calculateDDayDiscount() {
         if (isPeriodChristmasDiscount()) {
             benefits.dDayDiscount = day * 100;
@@ -57,8 +68,10 @@ public class BenefitService {
         }
     }
 
-    public boolean isGift() {
-
+    public void calculateGiftDiscount(int totalPrice) {
+        if (isGift(totalPrice)) {
+            benefits.giftDiscount += 25000;
+        }
     }
 
     private boolean isPeriodChristmasDiscount() {
