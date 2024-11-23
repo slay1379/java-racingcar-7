@@ -1,12 +1,13 @@
 package christmas.view;
 
+import christmas.domain.BadgeType;
 import christmas.domain.Benefits;
 import christmas.domain.OrderMenu;
 import java.util.List;
 
 public class OutputView {
     private static final String WELCOME_MSG = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
-    private static final String ORDER_MENUS = "\n<주문 메뉴>";
+    private static final String ORDER_MENUS = "\n\n<주문 메뉴>";
     private static final String TOTAL_PRICE_BEFORE_DISCOUNT = "\n<할인 전 총주문 금액>";
     private static final String GIFT_MENU = "\n<증정 메뉴>";
     private static final String BENEFIT_DETAILS = "\n<혜택 내역>";
@@ -42,21 +43,21 @@ public class OutputView {
         System.out.println(totalPriceBeforeDiscount+"원");
     }
 
-    public void printGiftMenu(boolean isGift) {
+    public void printGiftMenu(int giftDiscount) {
         System.out.println(GIFT_MENU);
-        if (isGift) {
-            System.out.println("샴페인 1개");
+        if (giftDiscount == 0) {
+            System.out.println(NOTHING);
             return;
         }
-        System.out.println(NOTHING);
+        System.out.println("샴페인 1개");
     }
 
     public void printBenefitDetails(Benefits benefits) {
         int total = benefits.dDayDiscount + benefits.weekdaysDiscount + benefits.specialDiscount + benefits.giftDiscount;
+        System.out.println(BENEFIT_DETAILS);
         if (total == 0) {
             System.out.println(NOTHING);
         }
-        System.out.println(BENEFIT_DETAILS);
         if (benefits.dDayDiscount > 0) {
             System.out.println(CHRISTMAS_DDAY_DISCOUNT + benefits.dDayDiscount + "원");
         }
@@ -81,9 +82,21 @@ public class OutputView {
         System.out.println(totalPriceAfterDiscount + "원");
     }
 
-    public void printEventBadge(String badge) {
+    public void printEventBadge(Benefits benefits) {
         System.out.println(EVENT_BADGE);
-        System.out.println(badge);
+        if (benefits.type == null) {
+            System.out.println(NOTHING);
+            return;
+        }
+        if (benefits.type.equals(BadgeType.TREE)) {
+            System.out.println("트리");
+        }
+        if (benefits.type.equals(BadgeType.SANTA)) {
+            System.out.println("산타");
+        }
+        if (benefits.type.equals(BadgeType.STAR)) {
+            System.out.println("별");
+        }
     }
 }
 
