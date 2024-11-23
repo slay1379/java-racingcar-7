@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.domain.BadgeType;
 import christmas.domain.Benefits;
 import christmas.domain.MenuType;
 import christmas.domain.Menus;
@@ -71,6 +72,20 @@ public class BenefitService {
     public void calculateGiftDiscount(int totalPrice) {
         if (isGift(totalPrice)) {
             benefits.giftDiscount += 25000;
+        }
+    }
+
+    private void calculateBadgeType() {
+        if (benefits.totalAmount >= 20000) {
+            benefits.type = BadgeType.SANTA;
+            return;
+        }
+        if (benefits.totalAmount >= 10000) {
+            benefits.type = BadgeType.TREE;
+            return;
+        }
+        if (benefits.totalAmount >= 5000) {
+            benefits.type = BadgeType.STAR;
         }
     }
 
