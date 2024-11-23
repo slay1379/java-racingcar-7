@@ -51,6 +51,12 @@ public class BenefitService {
         }
     }
 
+    public void calculateSpecialDiscount() {
+        if (isStarDay()) {
+            benefits.specialDiscount += 1000;
+        }
+    }
+
     private boolean isPeriodChristmasDiscount() {
         if (day > 25) {
             return false;
@@ -63,5 +69,12 @@ public class BenefitService {
             return false;
         }
         return true;
+    }
+
+    private boolean isStarDay() {
+        if (day % 7 == 3 || day == 25) {
+            return true;
+        }
+        return false;
     }
 }
