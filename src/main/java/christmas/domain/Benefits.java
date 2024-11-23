@@ -7,6 +7,7 @@ public class Benefits {
     public int specialDiscount;
     public int giftDiscount;
     public int totalAmount;
+    public BadgeType type;
 
     public Benefits() {
         this.dDayDiscount = 0;
@@ -15,5 +16,6 @@ public class Benefits {
         this.specialDiscount = 0;
         this.giftDiscount = 0;
         this.totalAmount = 0;
+        this.type = null;
     }
 }
