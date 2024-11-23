@@ -57,6 +57,10 @@ public class BenefitService {
         }
     }
 
+    public boolean isGift() {
+
+    }
+
     private boolean isPeriodChristmasDiscount() {
         if (day > 25) {
             return false;
@@ -73,6 +77,13 @@ public class BenefitService {
 
     private boolean isStarDay() {
         if (day % 7 == 3 || day == 25) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isGift(int totalPrice) {
+        if (totalPrice >= 120000) {
             return true;
         }
         return false;
