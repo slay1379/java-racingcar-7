@@ -68,6 +68,12 @@ public class OutputView {
 
     public void printTotalBenefitAmount(int totalBenefitAmount) {
         System.out.println(TOTAL_BENEFIT_AMOUNT);
-        System.out.println(-totalBenefitAmount);
+        System.out.println(-totalBenefitAmount + "원");
+    }
+
+    public void printTotalPriceAfterDiscount(int totalPriceAfterDiscount) {
+        System.out.println(TOTAL_PRICE_AFTER_DISCOUNT);
+        System.out.println(totalPriceAfterDiscount + "원");
     }
 }
+
