@@ -91,4 +91,13 @@ public class  Menus {
         }
         return null;
     }
+
+    public int findMenuCostByName(String menuName) {
+        for (HashMap<String, Object> menu : menus) {
+            if (menu.get("name").equals(menuName)) {
+                return (int) menu.get("cost");
+            }
+        }
+        return 0;
+    }
 }
