@@ -30,6 +30,14 @@ public class OrderMenuService {
         return true;
     }
 
+    public int calculateTotalPrice() {
+        int totalPrice = 0;
+        for (OrderMenu orderMenu : orderMenus) {
+            totalPrice += menus.findMenuCostByName(orderMenu.name);
+        }
+        return totalPrice;
+    }
+
     private int calculateOrderMenuTotalQuantity() {
         int total = 0;
         for (OrderMenu orderMenu : orderMenus) {
