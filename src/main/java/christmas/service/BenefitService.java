@@ -15,22 +15,17 @@ public class BenefitService {
     private static final int MAIN_DISCOUNT_AMOUNT = 2023;
 
     private Benefits benefits;
-    private List<OrderMenu> orderMenus;
-    private int day;
-    private Menus menus;
+    private Menus menus = new Menus();
 
-    public BenefitService(Benefits benefits, List<OrderMenu> orderMenus, int day, Menus menus) {
+    public BenefitService(Benefits benefits) {
         this.benefits = benefits;
-        this.orderMenus = orderMenus;
-        this.day = day;
-        this.menus = menus;
     }
 
-    public void calculateTotalDiscount(int totalPrice) {
-        calculateDDayDiscount();
-        calculateWeekdaysDiscount();
-        calculateWeekendDiscount();
-        calculateSpecialDiscount();
+    public void calculateTotalDiscount(int totalPrice,int day,List<OrderMenu> orderMenus) {
+        calculateDDayDiscount(day);
+        calculateWeekdaysDiscount(day,orderMenus);
+        calculateWeekendDiscount(day,orderMenus);
+        calculateSpecialDiscount(day);
         calculateGiftDiscount(totalPrice);
         benefits.totalAmount +=
                 benefits.dDayDiscount + benefits.weekendDiscount + benefits.weekdaysDiscount + benefits.specialDiscount
@@ -38,34 +33,34 @@ public class BenefitService {
         calculateBadgeType();
     }
 
-    public void calculateDDayDiscount() {
-        if (isPeriodChristmasDiscount()) {
-            benefits.dDayDiscount = day * 100;
+    public void calculateDDayDiscount(int day) {
+        if (isPeriodChristmasDiscount(day)) {
+            benefits.dDayDiscount += 900 + day * 100;
         }
     }
 
-    public void calculateWeekdaysDiscount() {
-        if (isWeeksday()) {
+    public void calculateWeekdaysDiscount(int day,List<OrderMenu> orderMenus) {
+        if (isWeeksday(day)) {
             for (OrderMenu orderMenu : orderMenus) {
                 if (menus.findMenuTypeByName(orderMenu.name) == MenuType.DESSERT) {
-                    benefits.weekdaysDiscount += DESSERT_DISCOUNT_AMOUNT;
+                    benefits.weekdaysDiscount += DESSERT_DISCOUNT_AMOUNT * orderMenu.quantity;
                 }
             }
         }
     }
 
-    public void calculateWeekendDiscount() {
-        if (!isWeeksday()) {
+    public void calculateWeekendDiscount(int day,List<OrderMenu> orderMenus) {
+        if (!isWeeksday(day)) {
             for (OrderMenu orderMenu : orderMenus) {
                 if (menus.findMenuTypeByName(orderMenu.name) == MenuType.MAIN) {
-                    benefits.weekendDiscount += MAIN_DISCOUNT_AMOUNT;
+                    benefits.weekendDiscount += MAIN_DISCOUNT_AMOUNT * orderMenu.quantity;
                 }
             }
         }
     }
 
-    public void calculateSpecialDiscount() {
-        if (isStarDay()) {
+    public void calculateSpecialDiscount(int day) {
+        if (isStarDay(day)) {
             benefits.specialDiscount += 1000;
         }
     }
@@ -90,28 +85,28 @@ public class BenefitService {
         }
     }
 
-    private boolean isPeriodChristmasDiscount() {
+    private boolean isPeriodChristmasDiscount(int day) {
         if (day > 25) {
             return false;
         }
         return true;
     }
 
-    private boolean isWeeksday() {
+    private boolean isWeeksday(int day) {
         if (day % 7 == 1 || day % 7 == 2) {
             return false;
         }
         return true;
     }
 
-    private boolean isStarDay() {
+    private boolean isStarDay(int day) {
         if (day % 7 == 3 || day == 25) {
             return true;
         }
         return false;
     }
 
-    private boolean isGift(int totalPrice) {
+    public boolean isGift(int totalPrice) {
         if (totalPrice >= 120000) {
             return true;
         }
