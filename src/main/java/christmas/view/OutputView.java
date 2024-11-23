@@ -6,23 +6,28 @@ import java.util.List;
 
 public class OutputView {
     private static final String WELCOME_MSG = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
-    private static final String ORDER_MENUS = "<주문 메뉴>";
-    private static final String TOTAL_PRICE_BEFORE_DISCOUNT = "<할인 전 총주문 금액>";
-    private static final String GIFT_MENU = "<증정 메뉴>";
-    private static final String BENEFIT_DETAILS = "<혜택 내역>";
-    private static final String TOTAL_BENEFIT_AMOUNT = "<총혜택 금액>";
-    private static final String TOTAL_PRICE_AFTER_DISCOUNT = "<할인 후 예상 결제 금액>";
-    private static final String EVENT_BADGE = "<12월 이벤트 배지>";
+    private static final String ORDER_MENUS = "\n<주문 메뉴>";
+    private static final String TOTAL_PRICE_BEFORE_DISCOUNT = "\n<할인 전 총주문 금액>";
+    private static final String GIFT_MENU = "\n<증정 메뉴>";
+    private static final String BENEFIT_DETAILS = "\n<혜택 내역>";
+    private static final String TOTAL_BENEFIT_AMOUNT = "\n<총혜택 금액>";
+    private static final String TOTAL_PRICE_AFTER_DISCOUNT = "\n<할인 후 예상 결제 금액>";
+    private static final String EVENT_BADGE = "\n<12월 이벤트 배지>";
     private static final String CHRISTMAS_DDAY_DISCOUNT = "크리스마스 디데이 할인: -";
     private static final String WEEKDAYS_DISCOUNT = "평일 할인: -";
     private static final String SPECIAL_DISCOUNT = "특별 할인: -";
     private static final String GIFT_EVENT = "증정 이벤트: -";
     private static final String NOTHING = "없음";
+    private static final String PREVIEW_EVENT_BENEFITS = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
 
 
 
     public void printWelcomeMsg() {
         System.out.println(WELCOME_MSG);
+    }
+
+    public void printPreviewEventBenefits(int day) {
+        System.out.printf(PREVIEW_EVENT_BENEFITS,day);
     }
 
     public void printOrderMenus(List<OrderMenu> orderMenus) {
@@ -53,7 +58,7 @@ public class OutputView {
         }
         System.out.println(BENEFIT_DETAILS);
         if (benefits.dDayDiscount > 0) {
-            System.out.println(CHRISTMAS_DDAY_DISCOUNT + benefits.dDayDiscount + 원);
+            System.out.println(CHRISTMAS_DDAY_DISCOUNT + benefits.dDayDiscount + "원");
         }
         if (benefits.weekdaysDiscount > 0) {
             System.out.println(WEEKDAYS_DISCOUNT + benefits.weekdaysDiscount + "원");
