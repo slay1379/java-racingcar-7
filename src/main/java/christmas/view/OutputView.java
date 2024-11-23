@@ -10,7 +10,7 @@ public class OutputView {
     private static final String TOTAL_PRICE_BEFORE_DISCOUNT = "<할인 전 총주문 금액>";
     private static final String GIFT_MENU = "<증정 메뉴>";
     private static final String BENEFIT_DETAILS = "<혜택 내역>";
-    private static final String TOTAL_BENEFIT_PRICE = "<총혜택 금액>";
+    private static final String TOTAL_BENEFIT_AMOUNT = "<총혜택 금액>";
     private static final String TOTAL_PRICE_AFTER_DISCOUNT = "<할인 후 예상 결제 금액>";
     private static final String EVENT_BADGE = "<12월 이벤트 배지>";
     private static final String CHRISTMAS_DDAY_DISCOUNT = "크리스마스 디데이 할인: -";
@@ -64,5 +64,10 @@ public class OutputView {
         if (benefits.giftDiscount > 0) {
             System.out.println(GIFT_EVENT + benefits.giftDiscount + "원");
         }
+    }
+
+    public void printTotalBenefitAmount(int totalBenefitAmount) {
+        System.out.println(TOTAL_BENEFIT_AMOUNT);
+        System.out.println(-totalBenefitAmount);
     }
 }
