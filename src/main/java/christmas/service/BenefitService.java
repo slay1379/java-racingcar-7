@@ -11,6 +11,7 @@ import java.util.Map;
 public class BenefitService {
 
     private static final int DESSERT_DISCOUNT_AMOUNT = 2023;
+    private static final int MAIN_DISCOUNT_AMOUNT = 2023;
 
     private Benefits benefits;
     private List<OrderMenu> orderMenus;
@@ -35,6 +36,16 @@ public class BenefitService {
             for (OrderMenu orderMenu : orderMenus) {
                 if (menus.findMenuTypeByName(orderMenu.name) == MenuType.DESSERT) {
                     benefits.weekdaysDiscount += DESSERT_DISCOUNT_AMOUNT;
+                }
+            }
+        }
+    }
+
+    public void calculateWeekendDiscount() {
+        if (!isWeeksday()) {
+            for (OrderMenu orderMenu : orderMenus) {
+                if (menus.findMenuTypeByName(orderMenu.name) == MenuType.MAIN) {
+                    benefits.weekendDiscount += MAIN_DISCOUNT_AMOUNT;
                 }
             }
         }
