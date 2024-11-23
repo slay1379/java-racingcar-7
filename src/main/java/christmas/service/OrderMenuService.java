@@ -38,6 +38,13 @@ public class OrderMenuService {
         return totalPrice;
     }
 
+    public boolean isApplicableEvent() {
+        if (calculateTotalPrice() >= 10000) {
+            return true;
+        }
+        return false;
+    }
+
     private int calculateOrderMenuTotalQuantity() {
         int total = 0;
         for (OrderMenu orderMenu : orderMenus) {
