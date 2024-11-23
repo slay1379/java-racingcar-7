@@ -35,6 +35,7 @@ public class BenefitService {
         benefits.totalAmount +=
                 benefits.dDayDiscount + benefits.weekendDiscount + benefits.weekdaysDiscount + benefits.specialDiscount
                         + benefits.giftDiscount;
+        calculateBadgeType();
     }
 
     public void calculateDDayDiscount() {
@@ -112,6 +113,13 @@ public class BenefitService {
 
     private boolean isGift(int totalPrice) {
         if (totalPrice >= 120000) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isApplicableEvent() {
+        if (benefits.totalAmount >= 10000) {
             return true;
         }
         return false;
