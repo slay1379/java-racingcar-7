@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.Benefits;
 import christmas.domain.OrderMenu;
 import java.util.List;
 
@@ -12,6 +13,12 @@ public class OutputView {
     private static final String TOTAL_BENEFIT_PRICE = "<총혜택 금액>";
     private static final String TOTAL_PRICE_AFTER_DISCOUNT = "<할인 후 예상 결제 금액>";
     private static final String EVENT_BADGE = "<12월 이벤트 배지>";
+    private static final String CHRISTMAS_DDAY_DISCOUNT = "크리스마스 디데이 할인: -";
+    private static final String WEEKDAYS_DISCOUNT = "평일 할인: -";
+    private static final String SPECIAL_DISCOUNT = "특별 할인: -";
+    private static final String GIFT_EVENT = "증정 이벤트: -";
+    private static final String NOTHING = "없음";
+
 
 
     public void printWelcomeMsg() {
@@ -36,6 +43,26 @@ public class OutputView {
             System.out.println("샴페인 1개");
             return;
         }
-        System.out.println("없음");
+        System.out.println(NOTHING);
+    }
+
+    public void printBenefitDetails(Benefits benefits) {
+        int total = benefits.dDayDiscount + benefits.weekdaysDiscount + benefits.specialDiscount + benefits.giftDiscount;
+        if (total == 0) {
+            System.out.println(NOTHING);
+        }
+        System.out.println(BENEFIT_DETAILS);
+        if (benefits.dDayDiscount > 0) {
+            System.out.println(CHRISTMAS_DDAY_DISCOUNT + benefits.dDayDiscount + 원);
+        }
+        if (benefits.weekdaysDiscount > 0) {
+            System.out.println(WEEKDAYS_DISCOUNT + benefits.weekdaysDiscount + "원");
+        }
+        if (benefits.specialDiscount > 0) {
+            System.out.println(SPECIAL_DISCOUNT + benefits.specialDiscount + "원");
+        }
+        if (benefits.giftDiscount > 0) {
+            System.out.println(GIFT_EVENT + benefits.giftDiscount + "원");
+        }
     }
 }
