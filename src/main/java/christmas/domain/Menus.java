@@ -5,19 +5,90 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Menus {
-    HashMap<String, Menu> menus = new HashMap<>(){{
-        put("양송이수프", new Menu("양송이수프", 6000, MenuType.APPETIZER));
-        put("타파스", new Menu("타파스", 5500, MenuType.APPETIZER));
-        put("시저샐러드", new Menu("시저샐러드", 8000, MenuType.APPETIZER));
-        put("티본스테이크", new Menu("티본스테이크", 55000, MenuType.MAIN));
-        put("바비큐립", new Menu("바비큐립", 54000, MenuType.MAIN));
-        put("해산물파스타", new Menu("해산물파스타", 35000, MenuType.MAIN));
-        put("크리스마스파스타", new Menu("크리스마스파스타", 25000, MenuType.MAIN));
-        put("초코케이크", new Menu("초코케이크", 15000, MenuType.DESERT));
-        put("아이스크림", new Menu("아이스크림", 5000, MenuType.DESERT));
-        put("제로콜라", new Menu("제로콜라", 3000, MenuType.DRINK));
-        put("레드와인", new Menu("레드와인", 60000, MenuType.DRINK));
-        put("샴페인", new Menu("샴페인", 25000, MenuType.DRINK));
+public class  Menus {
+
+    HashMap<String, Object> menu1 = new HashMap<String, Object>(){{
+        put("name", "양송이스프");
+        put("cost", 6000);
+        put("type", MenuType.APPETIZER);
     }};
+    HashMap<String, Object> menu2 = new HashMap<String, Object>(){{
+        put("name", "타파스");
+        put("cost", 5500);
+        put("type", MenuType.APPETIZER);
+    }};
+    HashMap<String, Object> menu3 = new HashMap<String, Object>(){{
+        put("name", "시저샐러드");
+        put("cost", 8000);
+        put("type", MenuType.APPETIZER);
+    }};
+    HashMap<String, Object> menu4 = new HashMap<String, Object>(){{
+        put("name", "티본스테이크");
+        put("cost", 55000);
+        put("type", MenuType.MAIN);
+    }};
+    HashMap<String, Object> menu5 = new HashMap<String, Object>(){{
+        put("name", "바비큐립");
+        put("cost", 54000);
+        put("type", MenuType.MAIN);
+    }};
+    HashMap<String, Object> menu6 = new HashMap<String, Object>(){{
+        put("name", "해산물파스타");
+        put("cost", 35000);
+        put("type", MenuType.MAIN);
+    }};
+    HashMap<String, Object> menu7 = new HashMap<String, Object>(){{
+        put("name", "크리스마스파스타");
+        put("cost", 25000);
+        put("type", MenuType.MAIN);
+    }};
+    HashMap<String, Object> menu8 = new HashMap<String, Object>(){{
+        put("name", "초코케이크");
+        put("cost", 15000);
+        put("type", MenuType.DESSERT);
+    }};
+    HashMap<String, Object> menu9 = new HashMap<String, Object>(){{
+        put("name", "아이스크림");
+        put("cost", 5000);
+        put("type", MenuType.DESSERT);
+    }};
+    HashMap<String, Object> menu10 = new HashMap<String, Object>(){{
+        put("name", "제로콜라");
+        put("cost", 3000);
+        put("type", MenuType.DRINK);
+    }};
+    HashMap<String, Object> menu11 = new HashMap<String, Object>(){{
+        put("name", "레드와인");
+        put("cost", 60000);
+        put("type", MenuType.DRINK);
+    }};
+    HashMap<String, Object> menu12 = new HashMap<String, Object>(){{
+        put("name", "샴페인");
+        put("cost", 25000);
+        put("type", MenuType.DRINK);
+    }};
+
+    ArrayList<HashMap<String, Object>> menus = new ArrayList<HashMap<String, Object>>(){{
+        add(menu1);
+        add(menu2);
+        add(menu3);
+        add(menu4);
+        add(menu5);
+        add(menu6);
+        add(menu7);
+        add(menu8);
+        add(menu9);
+        add(menu10);
+        add(menu11);
+        add(menu12);
+    }};
+
+    public MenuType findMenuTypeByName(String menuName) {
+        for (HashMap<String, Object> menu : menus) {
+            if (menu.get("name").equals(menuName)) {
+                return (MenuType) menu.get("type");
+            }
+        }
+        return null;
+    }
 }
